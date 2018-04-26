@@ -1,0 +1,12 @@
+# Fdb version 3
+["xdvipdfmx"] 0 "out/background.xdv" "out/background.pdf" "out/background" 0
+  "out/background.xdv" 0 -1 0 "xelatex"
+  (generated)
+  "out/background.pdf"
+["xelatex"] 1524658135 "background.tex" "out/background.xdv" "background" 1524658137
+  "background.tex" 1524658125 657 2c9ab97f700d7859c858549a3a225c49 ""
+  "c:/texlive/2017/texmf-var/web2c/xetex/xelatex.fmt" 1523760605 3705222 4d52409b1ddf024606c9bdd19ef0bb43 ""
+  "out/background.aux" 1524658135 9 a94a2480d3289e625eea47cd1b285758 ""
+  (generated)
+  "out/background.xdv"
+  "out/background.log"

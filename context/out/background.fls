@@ -1,0 +1,4 @@
+PWD C:/Users/billw/Desktop/Dissertation/MyLaTeXTemplate/template/context
+INPUT c:/texlive/2017/texmf-var/web2c/xetex/xelatex.fmt
+INPUT ./background.tex
+OUTPUT out/background.log
