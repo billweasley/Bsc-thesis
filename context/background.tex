@@ -4,7 +4,11 @@
 % !!!Project requirement
 \section{Background}
 \subsection{Brief Introduction to Population Protocols \cite{AspnesR2007, MCS11}}
+<<<<<<< HEAD
 \par\noindent
+=======
+\par
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 Population protocols are theoretical models for distributed computation.
 The model contains a collection of indistinguishable agents.
 They (i.e. the agents) carry out computation tasks through directly pair-wised interactions.
@@ -20,6 +24,7 @@ A protocol can be formally defined as:
   \item $\omega = Q \to Y $, is an output map from $Q$ to $Y$, and
   \item $\delta \subseteq Q^{4}$, a transition relation describes how pairs of agents can interact.
 \end{itemize}
+<<<<<<< HEAD
 
 \par\noindent
 A \textit{configuration} for a population is a vector of all the agents' states.
@@ -28,6 +33,14 @@ could also an unordered multiset of states. It can be represented as $C$.
 
 
 \par \label{IntroToPPFairScheduler} \noindent
+=======
+\par
+A \textit{configuration} for a population is a vector of all the agents' states.
+Because agents with a same state are indistinguishable with each other, each configuration
+could also an unordered multiset of states. It can be represented as $C$
+\par
+\label{IntroToPPFairScheduler}
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 At any point of the discrete time, the interaction is unpredictable from the perspective of the agents
 in the population and the population itself. The interactions at any time are decided
 by a adversary scheduler necessarily enforced with \textit{fairness} condition.
@@ -65,7 +78,11 @@ the $C^{'}$ must also appear infinitely of in the execution.
 \end{figure}
 
 
+<<<<<<< HEAD
 \par\noindent
+=======
+\par
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 The current implementation of this work assumes a more strict scheduler called random scheduler,
 which resulting uniform random interactions (i.e. at each step, it presents
 equally possibility for every pair of agents to interact.) Essentially, a random scheduler is a "fair" scheduler, but a "fair" scheduler is not necessarily a random scheduler.
@@ -75,7 +92,11 @@ simplifying the current implementation and possibly extends to other fair schedu
 random scheduler in the future.
 
 \subsection{From Population Protocols to Network Constructor \cite{MS16a}}
+<<<<<<< HEAD
 \par\noindent
+=======
+\par
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 A variance of population protocol is called "network constructor" \cite{MS16a}.
 It involves the further elements for population protocol called "edge", which is
 the connection in between any two agents (or "processes"). In general, the connection
@@ -84,7 +105,11 @@ a connection have $k + 1$ states, then state 0 represents the connection does no
 shows the strength for a particular connection.
 
 
+<<<<<<< HEAD
 \par\noindent
+=======
+\par
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 
 In the following paragraph and the currently implemented simulator, we solely consider the simplest
 case containing only $on$ and $off$ two states for edges. A connection is said to be in
@@ -94,7 +119,11 @@ At initial, all edge are in $off$ state, which means that there is no connection
 population at discrete time 0. The state for an edge may or may not change through an interaction
 in between two nodes.
 
+<<<<<<< HEAD
 \par\noindent
+=======
+\par
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 The network constructor also follows an adversary scheduler with "fairness" constraint. This is
 exactly same as the paragraphs mentioned the previous section \ref{IntroToPPFairScheduler}.
 
@@ -107,7 +136,11 @@ Formally, a network constructor can be defined as:
   \item $\delta: Q \times Q \times \{0,1\} \to Q \times Q \times \{0,1\}$, a transition function, where the $\{0,1\}$ is the states for edges with initial value 0.
 \end{itemize}
 
+<<<<<<< HEAD
 \par\noindent
+=======
+\par
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 The main target of this model concentrates on network construction rather than
 specific function computation. Notice that a transition can be either \textit{effective}
 or \textit{ineffective}. Define $\delta(a, b, c) = (a^{'}, b^{'},c^{'})$ as a transition function (Here, $a, b$ are "node-state" whereas $c$ is state for edge.)
@@ -115,14 +148,22 @@ as in the formal definition, $\delta_{1}(a,b,c) = a^{'}$, $\delta_{2}(a,b,c) = b
 and $\delta_{3}(a,b,c) = c^{'}$ (representing edge state change), the transition $(a,b,c) \to (a^{'}, b^{'},c^{'})$ is called
 effective if at least one $x \in \{a,b,c\} \not= x^{'} $; otherwise it is called ineffective.
 
+<<<<<<< HEAD
 \par\noindent
+=======
+\par
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 Name the set of nodes (or "distributed processes" under this context) $V_{I}$ and the set of pairs of nodes as $E_{I}$.
 A configuration $C$ is a mapping $ V_{I} \cup E_{I} \to Q \cup \{0,1\} $ determines the states of nodes and edges in the population at any discrete time.
 The output of configuration $C$ is defined as the graph $G(C) = (V, E) $ where $V = \{u \in V_{I}: C(u) \in Q_{out}\}$
 and  $E = \{uv: u, v \in V, u \not= v,$ and $C(uv) = 1\}$.
 
 \subsection{Grid Terminating Network Constructor \cite{Mi17} \label{IntroToGrid}}
+<<<<<<< HEAD
 \par\noindent
+=======
+\par
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 The paper \cite{Mi17} presents a different automata but similar to network constructor. The node in this
 model has a fixed number of ports with it. In the 2-dimensional case, it will have 4 distinguished ports
 $p_{y}$, $p_{x}$, $p_{-y}$ and $p_{-x}$, may simply donated as $u$, $r$, $d$ and $l$, respectively.
@@ -131,7 +172,11 @@ $ u \perp r $, $ r \perp d $, $ d \perp l $, and  $ l \perp u $. The coordinates
 do not necessarily represent the actual orientation of a node. A connection (or edge) only can be built through
 pairs of ports, which is different from the previous model (network constructor).
 
+<<<<<<< HEAD
 \par\noindent
+=======
+\par
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 \begin{figure}[H]
 \begin{center}
 \begin{tikzpicture}
@@ -150,7 +195,11 @@ pairs of ports, which is different from the previous model (network constructor)
 \caption{Structure of a node in Grid Terminating Network Constructor model}
 \end{figure}
 
+<<<<<<< HEAD
 \par\noindent
+=======
+\par
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 \paragraph{Formal Definition}
 Formally, a terminating grid network constructor in 2-D can be defined as:
 \begin{itemize}
@@ -160,12 +209,20 @@ Formally, a terminating grid network constructor in 2-D can be defined as:
   \item $\delta: (Q \times P ) \times (Q \times P) \times \{0,1\} \to Q \times Q \times \{0,1\}$, a transition function, where the $\{0,1\}$ is the states for edges with initial value 0.
   \item When required, there will be also a special initial leader-state $L_{0} \in Q $ defined.
 \end{itemize}
+<<<<<<< HEAD
 \par\noindent
+=======
+\par
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 A transition can be either \textit{effective}
 or \textit{ineffective}. Define $\delta((a, p_{1}), (b, p_{2}), c) = (a^{'}, b^{'},c^{'})$ as a transition function
 as in the formal definition, it is called effective if at least one $x \in \{a,b,c\} \not= x^{'} $; otherwise it is called ineffective.
 
+<<<<<<< HEAD
 \par\noindent
+=======
+\par
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 Every configuration $C$ forms a set of shapes $G[A(C)]$, where a shape means that the network induced
 by active edges of $C$. Given the geometrical restrictions (i.e. the connection are
 made at unit distance and are perpendicular whenever they correspond to consecutive ports of a node),
@@ -173,7 +230,11 @@ not all possible $A(C)$ are valid. $A(C)$ is valid if any connected component de
 subnetwork of 2D grid network with unit distances. A valid $A(C)$ at time $t -1$ also restricts the
 possible valid $A(C)$ at time $t + k$, where $k \in Integer$ and $k \geq 0 $.
 
+<<<<<<< HEAD
 \par\noindent
+=======
+\par
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 The paper \cite{Mi17} also defines a set of
 shapes $G_{out}(C) = \{V_{s}, E_{s}\}$ as output of a configuration where $V_{s} = \{u \in V : C_{v}(u) \in Q_{out} \}$
 and $E_{s} = A(C) \cap \{ (v_{1}, p_{1}) : v_{1} \not= v_{2} \in V_{s}; p_{1}, p_{2} \in P \}$.
@@ -183,17 +244,26 @@ All rules containing $q_{halt} \in Q_{halt} $ is ineffective.
 
 \subsection{Vector transformation: Handle coordinate rotations in 2-dimension}
 
+<<<<<<< HEAD
 \par\noindent
+=======
+\par
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 As mentioned in the previous section \ref{IntroToGrid}, Grid Terminating Network Constructor enforces perpendicular ports
 and geometrical restrictions. This means that handling rotation in some cases becomes necessary.
 This section will cover some basic but related vector mathematics. The detailed algorithms will be discussed later on, in "Realisation" section (\ref{Realisation}).
 
 \subsubsection{2D centred coordinate rotation, with origin point as the centre}
+<<<<<<< HEAD
 \par\noindent
+=======
+\par
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.6\textwidth]{res/2d_vector.pdf}
 \caption{Vector $\vec{r}$ and $\vec{r_{'}}$ in unit circle}
+<<<<<<< HEAD
 \label{vectorG}
 \end{center}
 \end{figure}
@@ -206,6 +276,47 @@ Note that, the "positive" rotation direction in current context and the implemen
 
 \par\noindent
 To solve this, the following equation can be concluded:
+=======
+\end{center}
+\end{figure}
+
+Observe the graph above, it has two same-length vectors,  $\vec{r}$ and $\vec{r_{'}}$ in the Cartesian coordinate and their destination point located at the unit circle.
+The coordinate of point $A$ is the origin point with coordinate $(0, 0)$. Suppose it is already known that the coordinate of $B$ is
+$(x,y)$, and the $\theta$ angle. The question is that what the coordinate of $B^{'}$ (representing by $(x^{'},y^{'})$) is, after the first vector $\vec{r}$ rotates the given angle $\theta$ and becomes $\vec{r_{'}}$.
+Note that, the positive rotation direction in current context and the implementation of software are defined as "clock-wised".
+\par
+For convenience, here name $\angle CAB $ as $\alpha$. Then it has
+$$|AD| = |\vec{r^{'}}| \cos(\alpha - \theta)$$
+$$|B^{'}D| = |\vec{r^{'}}| \sin(\alpha - \theta)$$
+
+By applying angle sum identities,
+$$|AD| = |\vec{r^{'}}| (\cos(\alpha)\cos(-\theta) - \sin(\alpha)\sin(-\theta))$$
+$$|B^{'}D| = |\vec{r^{'}}| (\sin(\alpha)\cos(-\theta) + \sin(-\theta)\cos(\alpha))$$
+
+Because $|r^{'}| = |r|$, $\sin(\theta) = - \sin(-\theta)$ for $\theta \in [0, \pi/2)$ and $\cos(\theta) = \cos(-\theta)$ for $\theta \in [0, \pi/2)$,
+$$|AD| = |\vec{r}| (\cos(\alpha)\cos(\theta) + \sin(\alpha)\sin(\theta))$$
+$$|B^{'}D| = |\vec{r}| (\sin(\alpha)\cos(\theta) - \sin(\theta)\cos(\alpha))$$
+
+Then,
+$$|AD| = (|\vec{r}|\cos(\alpha))\cos(\theta) + (|\vec{r}|\sin(\alpha))\sin(\theta)$$
+$$|B^{'}D| = (|\vec{r}|\sin(\alpha))\cos(\theta) - (|\vec{r}|\cos(\alpha))\sin(\theta)$$
+
+Hence,
+$$|AD| = |AC|\cos(\theta) + |BC|\sin(\theta)$$
+$$|B^{'}D| = |BC|\cos(\theta) - |AC|\sin(\theta)$$
+
+Finally,
+$$|x^{'}| = |x|\cos(\theta) + |y|\sin(\theta)$$
+$$|y^{'}| = |x|(- \sin(\theta)) + |y|\cos(\theta)$$
+
+For $\theta \in [0, \pi/2)$, the equations can be written simply as
+$$ x^{'} = x\cos\theta + y\sin\theta$$
+$$ y^{'} = x(- \sin\theta) + y\cos\theta$$
+
+which can be easily extended to $\theta \in [ 0, 2\pi + 2k\pi)$ via discussion under different cases, given that $k \in Integer$.\\
+
+The two equations can be written in matrix form :
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 \begin{equation} \label{Equ_ori}
   \begin{bmatrix}
    x^{'} \\ y^{'}
@@ -217,8 +328,12 @@ To solve this, the following equation can be concluded:
      \end{bmatrix}
 \end{equation}
 
+<<<<<<< HEAD
 \par\noindent
 A brief proof can be found in appendix partition below and it also can be found in \cite{Mitnote09} with a more precise and general proof.
+=======
+This transformation matrix for rotation also can be found in \cite{Mitnote09} with a more precise and general proof.
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 
 \subsubsection{2D centred coordinate rotation, with any points as the centre}
 Given the equation \ref{Equ_ori} mentioned in the previous section, it can be easily
@@ -241,20 +356,60 @@ Suppose the target point that is required to be rotated $p$ (with coordinate $(x
 \end{equation}
 
 \subsubsection{Affine transformation form}
+<<<<<<< HEAD
 After a series of transformation, the equation \ref{Equ_anycen} becomes the following form:
 
 \begin{equation} \label{Equ_aff}
+=======
+The equation \ref{Equ_anycen} can be transformed to:
+\begin{equation*}
+  \begin{split}
+  \begin{bmatrix}
+   x^{'} \\ y^{'}
+   \end{bmatrix} &= \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix} \left(\begin{bmatrix} x \\ y \end{bmatrix} - \begin{bmatrix} c_{x} \\ c_{y} \end{bmatrix}\right) + \begin{bmatrix} c_{x} \\ c_{y} \end{bmatrix} \\
+                 &= \begin{bmatrix}
+          \cos\theta & \sin\theta \\
+          -\sin\theta & \cos\theta
+        \end{bmatrix}
+        \begin{bmatrix}
+          x \\ y
+         \end{bmatrix} - \begin{bmatrix}
+            \cos\theta & \sin\theta \\
+            -\sin\theta & \cos\theta
+          \end{bmatrix}\begin{bmatrix}
+            c_{x} \\ c_{y}
+          \end{bmatrix} + \begin{bmatrix}
+            c_{x} \\ c_{y}
+          \end{bmatrix} \\
+          &= \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix}
+          - \begin{bmatrix} c_{x}\cos\theta + c_{y}\sin\theta \\ -c_{x}\sin\theta + c_{y}\cos\theta \end{bmatrix} +
+           \begin{bmatrix} c_{x} \\ c_{y} \end{bmatrix} \\
+          &= \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix}
+          + \begin{bmatrix} c_{x}(1 - \cos\theta) - c_{y}\sin\theta \\ c_{y}(1 - \cos\theta) + c_{x}\sin\theta \end{bmatrix}
+\end{split}
+\end{equation*}
+
+Hence,
+\begin{equation}
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
   \begin{bmatrix}
    x^{'} \\ y^{'}
    \end{bmatrix}  = \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix}
 + \begin{bmatrix} c_{x}(1 - \cos\theta) - c_{y}\sin\theta \\ c_{y}(1 - \cos\theta) + c_{x}\sin\theta \end{bmatrix}
 \end{equation}
 
+<<<<<<< HEAD
 \par\noindent
 Let $ \textbf{M} = \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix} $
 and $ \textbf{B} = \begin{bmatrix} c_{x}(1 - \cos\theta) - c_{y}\sin\theta \\ c_{y}(1 - \cos\theta) + c_{x}\sin\theta \end{bmatrix}$, then $ \begin{bmatrix} x^{'} \\ y^{'} \end{bmatrix}  = \textbf{M} \begin{bmatrix} x \\ y \end{bmatrix} + \textbf{B}$,
 where it forms an \textit{affine transformation} \cite{WolframAT}. \textbf{M} and \textbf{B} can be calculated directly after knowing the rotation centre $(c_{x}, c_{y})$ and the
 rotation agle $\theta$, and therefore the calculated \textbf{M} and  \textbf{B} can be applied for multiple target coordinates (those coordinates required to be rotated). This simplifies the calculation for a large batch of centred rotation with multiple target coordinates.
+=======
+Let $ \textbf{M} = \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix} $
+and $ \textbf{B} = \begin{bmatrix} c_{x}(1 - \cos\theta) - c_{y}\sin\theta \\ c_{y}(1 - \cos\theta) + c_{x}\sin\theta \end{bmatrix}$, then $ \begin{bmatrix} x^{'} \\ y^{'} \end{bmatrix}  = \textbf{M} \begin{bmatrix} x \\ y \end{bmatrix} + \textbf{B}$,
+where it forms an \textit{affine transformation} \cite{WolframAT}. \textbf{M} and \textbf{B} can be calculated directly after knowing the rotation centre $(c_{x}, c_{y})$ and the
+rotation agle $\theta$, and therefore the calculated \textbf{M} and  \textbf{B} can be applied for multiple target coordinates (the coordinates required to be rotated). This simplifies the calculation for a large batch of centred rotation with multiple target coordinates.
+>>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 
 
 
