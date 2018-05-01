@@ -1,24 +1,27 @@
 \section{Introduction}
 % problem, objective, aims, !self-contained document!, challenges, solutions, how effective for the solutions
 \subsection{Aims and Objectives}
+\par
 The project aimed to study general population protocols \cite{AspnesR2007} and
- its two derived model,
-network constructor \cite{MS16a} and terminating shape constructor \cite{Mi17}
+its two derived model,
+network constructor \cite{MS16a} and terminating grid network constructor \cite{Mi17}
 (specifically for grid network construction).
 It also attempted to experimentally simulate, visualise and compare these protocols
 via building the simulator and visualizer.
 
 \subsection{The challenges in the project}
-\subsubsection{Heterogeneous for different types of Population Models}
+\subsubsection{Heterogeneous for different types of Models}
+\par
 The theoretical models involved in three main different models initially originated in
 population protocols. These three models share inherently common points but there are also some
 conceptual differences in between them. For instance, the network constructor \cite{MS16a} and terminating
-shape constructor \cite{Mi17}
+grid network constructor \cite{Mi17}
 involves state of connections in between two nodes while the original population protocol does not.
-The node of terminating shape constructor has its complexity structurally compared with
+The node of terminating grid network constructor has its complexity structurally compared with
 the other two types of model.
 
 \subsubsection{Heterogeneous for different types of Protocols}
+\par
 The protocols discussed in the related papers \cite{AspnesR2007, MS16a, Mi17} involves
 many different protocols. The protocols may totally different on many characteristics,
 such as their different computational ability, different ending in either or termination,
@@ -27,11 +30,13 @@ protocol to protocol may lead the simulator and visualizer hardly to be develope
 fully tested.
 
 \subsubsection{Human factor: Lacking Experience for model visualization}
+\par
 Prior to this project, the author has totally no experiences on model simulation and
 also no knowledge on what the related code library will be involved. Learning may take
 more time than its expected.
 
 \subsubsection{The Programme}
+\par
 The final programme contains an UI with an fix-sized area to illustrate the process of
 a particular protocol. The state of elements\footnote{\noindent "Elements" refers nodes in general population protocol,
 but also includes edge if the protocol involves edge states.}
@@ -40,23 +45,25 @@ information with regard of the population itself, including:
 \begin{itemize}
   \item Number of nodes
   \item Number of nodes distinguished in different status
-  \item Number of selections for pairs of nodes\footnote{may also include pair of ports for terminating shape constructor} that scheduler had took
+  \item Number of selections for pairs of nodes\footnote{may also include pair of ports for terminating grid network constructor} that scheduler had took
   \item Number of effective interactions the population executed
 \end{itemize}
-
+\par
 Additionally, it provides a set of parameters' settings regarding the initial configuration for the protocol and the population to be simulated, which includes:
 \begin{itemize}
   \item The number of nodes included in the simulation
-  \item The initial state for the nodes\footnote{\noindent The state of edge for dynamic networks (i.e. network constructor and terminating shape constructor) should be always "0" (i.e. inactivated) at initial, so it is omitted here.}
+  \item The initial state for the nodes\footnote{\noindent The state of edge for network constructors (i.e. network constructor and terminating grid network constructor) should be always "0" (i.e. inactivated) at initial, so it is omitted here.}
   \item The protocol type (and also different sets of transition rules for the protocol)
-  \item Option on whether to jump forward simulation of initially $n$ times selection from scheduler, and the value of $n$ if the option is enabled
+  \item Option on whether to use fast-forward simulation method for initially $n$ times selection from scheduler, and the value of $n$ if the option is enabled.
+  A fast-forward simulation executed in the model but does not present in viewer so it will faster than normal the case that does not enable this option.
 \end{itemize}
 
 \subsubsection{Evoluation of the project}
+\par
 In general, the simulator successfully implemented a series of different protocols for the three model mentioned above.
 
 \paragraph{UI} The UI functions of simulator is verified through a large number of different population simulations. This ensures the UI functions work as it expected in design stage.
 These experiments on theoretical model may also be asserted the correctness of model through the output configuration of these simulations.
 
-\paragraph{Population Model} The model partition of the simulator developed through Testing driven development method, which indicates the testing suits according to the specification had been written before any
+\paragraph{Model} The model partition of the simulator developed through Testing driven development method, which indicates the testing suits according to the specification had been written before any
 model code starts.
