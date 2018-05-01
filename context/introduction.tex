@@ -1,11 +1,8 @@
 \section{Introduction}
 % problem, objective, aims, !self-contained document!, challenges, solutions, how effective for the solutions
 \subsection{Aims and Objectives}
-<<<<<<< HEAD
+
 \par\noindent
-=======
-\par
->>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 The project aimed to study general population protocols \cite{AspnesR2007} and
 its two derived model,
 network constructor \cite{MS16a} and terminating grid network constructor \cite{Mi17}
@@ -15,83 +12,64 @@ via building the simulator and visualizer.
 
 \subsection{The challenges in the project}
 \subsubsection{Heterogeneous for different types of Models}
-<<<<<<< HEAD
+
 \par\noindent
-=======
-\par
->>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 The theoretical models involved in three main different models initially originated in
 population protocols. These three models share inherently common points but there are also some
 conceptual differences in between them. For instance, the network constructor \cite{MS16a} and terminating
 grid network constructor \cite{Mi17}
-involves state of connections in between two nodes while the original population protocol does not.
+involve state of connections in between two nodes while the original population protocol does not.
 The node of terminating grid network constructor has its complexity structurally compared with
 the other two types of model.
 
 \subsubsection{Heterogeneous for different types of Protocols}
-<<<<<<< HEAD
+
 \par\noindent
-=======
-\par
->>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
-The protocols discussed in the related papers \cite{AspnesR2007, MS16a, Mi17} involves
-many different protocols. The protocols may totally different on many characteristics,
+The protocols discussed in the related papers \cite{AspnesR2007, MS16a, Mi17} involve
+many different protocols. The protocols are totally different on many characteristics,
 such as their different computational ability, different ending in either or termination,
 computation target. These differences between
-protocol to protocol may lead the simulator and visualizer hardly to be developed and
-fully tested.
+protocol to protocol may lead the simulator and visualizer hard to develop and test.
 
 \subsubsection{Human factor: Lacking Experience for model visualization}
-<<<<<<< HEAD
+
 \par\noindent
-=======
-\par
->>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 Prior to this project, the author has totally no experiences on model simulation and
-also no knowledge on what the related code library will be involved. Learning may take
+also no knowledge on what kind of related library will be involved. Learning may take
 more time than its expected.
 
-\subsubsection{The Programme}
-<<<<<<< HEAD
+\subsubsection{Brief introduction to the programme}
+
 \par\noindent
-=======
-\par
->>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
-The final programme contains an UI with an fix-sized area to illustrate the process of
-a particular protocol. The state of elements\footnote{\noindent "Elements" refers nodes in general population protocol,
-but also includes edge if the protocol involves edge states.}
-In addition, it contains a information panel contains some related
-information with regard of the population itself, including:
+The final programme contains an UI with an fix-sized area to illustrate the interaction process of
+a particular protocol and shows the states of elements\footnote{\noindent "Elements" refers nodes in general population protocol,
+but also includes edge if the protocol involves edge states.} in the population.
+In addition, it contains a information panel containing some related
+information with regard to the population itself, including:
 \begin{itemize}
   \item Number of nodes
   \item Number of nodes distinguished in different status
   \item Number of selections for pairs of nodes\footnote{may also include pair of ports for terminating grid network constructor} that scheduler had took
   \item Number of effective interactions the population executed
 \end{itemize}
-<<<<<<< HEAD
+
 \par\noindent
-=======
-\par
->>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
-Additionally, it provides a set of parameters' settings regarding the initial configuration for the protocol and the population to be simulated, which includes:
+Additionally, it provides a set of parameters' settings regarding the initial configuration of a protocol and a population to be simulated, which includes:
 \begin{itemize}
   \item The number of nodes included in the simulation
-  \item The initial state for the nodes\footnote{\noindent The state of edge for network constructors (i.e. network constructor and terminating grid network constructor) should be always "0" (i.e. inactivated) at initial, so it is omitted here.}
+  \item The initial state for each node\footnote{\noindent The state of edge for network constructors (i.e. network constructor and terminating grid network constructor) should be always "0" (i.e. inactivated) at initial, so it is omitted here.}
   \item The protocol type (and also different sets of transition rules for the protocol)
-  \item Option on whether to use fast-forward simulation method for initially $n$ times selection from scheduler, and the value of $n$ if the option is enabled.
-  A fast-forward simulation executed in the model but does not present in viewer so it will faster than normal the case that does not enable this option.
+  \item Option on whether to use fast-forward simulation method for initially $n$-times selection, and the value of $n$ if the option is enabled.
+  A fast-forward simulation executed in the model but does not present that process in the viewer so it normally faster than the case that does not enable this option.
 \end{itemize}
 
 \subsubsection{Evoluation of the project}
-<<<<<<< HEAD
+
 \par\noindent
-=======
-\par
->>>>>>> e42249b7e71e19b1a5f8785e8211719991ec111d
 In general, the simulator successfully implemented a series of different protocols for the three model mentioned above.
 
-\paragraph{UI} The UI functions of simulator is verified through a large number of different population simulations. This ensures the UI functions work as it expected in design stage.
+\paragraph{UI} The UI functions of simulator is verified through a large number of different population simulations. This ensures the UI functions work as they expected in design stage.
 These experiments on theoretical model may also be asserted the correctness of model through the output configuration of these simulations.
 
-\paragraph{Model} The model partition of the simulator developed through Testing driven development method, which indicates the testing suits according to the specification had been written before any
-model code starts.
+\paragraph{Model} The model partition of the simulator developed through Testing driven development method. According to the specification, the testing suits had been written before the written of any
+model code . The model code has to pass all testing suits after their implementation.
