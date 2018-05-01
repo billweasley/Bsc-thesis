@@ -12,6 +12,9 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{cprotect}
 \usepackage{suffix}
+\usepackage{float}
+\usepackage{amsmath}
+
 
 % COMMANDS
 
@@ -67,9 +70,9 @@
 \newcommand\makereference[1]{ %
   \bibliographystyle{res/myieee}
   \bibliography{#1}
-  \addcontentsline{toc}{section}{References}
+  \addcontentsline{toc}{section}{Bibliography}
 }
-
+\renewcommand{\refname}{Bibliography}
 % \eq[label]{equation}
 \newcommand\eq[2][]{ %
   \ifthenelse{\equal{#1}{}}{ %

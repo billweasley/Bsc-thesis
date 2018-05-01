@@ -1,0 +1,73 @@
+\section{Brief Proof for equation (\ref{Equ_ori})}
+\par\noindent
+
+For convenience, here name $\angle CAB $ as $\alpha$ in figure \ref{vectorG}. Then it has
+$$|AD| = |\vec{r^{'}}| \cos(\alpha - \theta)$$
+$$|B^{'}D| = |\vec{r^{'}}| \sin(\alpha - \theta)$$
+
+By applying angle sum identities,
+$$|AD| = |\vec{r^{'}}| (\cos(\alpha)\cos(-\theta) - \sin(\alpha)\sin(-\theta))$$
+$$|B^{'}D| = |\vec{r^{'}}| (\sin(\alpha)\cos(-\theta) + \sin(-\theta)\cos(\alpha))$$
+
+Because $|r^{'}| = |r|$, $\sin(\theta) = - \sin(-\theta)$ for $\theta \in [0, \pi/2)$ and $\cos(\theta) = \cos(-\theta)$ for $\theta \in [0, \pi/2)$,
+$$|AD| = |\vec{r}| (\cos(\alpha)\cos(\theta) + \sin(\alpha)\sin(\theta))$$
+$$|B^{'}D| = |\vec{r}| (\sin(\alpha)\cos(\theta) - \sin(\theta)\cos(\alpha))$$
+
+Then,
+$$|AD| = (|\vec{r}|\cos(\alpha))\cos(\theta) + (|\vec{r}|\sin(\alpha))\sin(\theta)$$
+$$|B^{'}D| = (|\vec{r}|\sin(\alpha))\cos(\theta) - (|\vec{r}|\cos(\alpha))\sin(\theta)$$
+
+Hence,
+$$|AD| = |AC|\cos(\theta) + |BC|\sin(\theta)$$
+$$|B^{'}D| = |BC|\cos(\theta) - |AC|\sin(\theta)$$
+
+Finally,
+$$|x^{'}| = |x|\cos(\theta) + |y|\sin(\theta)$$
+$$|y^{'}| = |x|(- \sin(\theta)) + |y|\cos(\theta)$$
+
+For $\theta \in [0, \pi/2)$, the equations can be written simply as
+$$ x^{'} = x\cos\theta + y\sin\theta$$
+$$ y^{'} = x(- \sin\theta) + y\cos\theta$$
+
+which can be easily extended to $\theta \in [ 0, 2\pi + 2k\pi)$ via discussion under different cases, given that $k \in Integer$.\\
+
+The two equations can be written in matrix form :
+\begin{equation}
+  \begin{bmatrix}
+   x^{'} \\ y^{'}
+   \end{bmatrix} =   \begin{bmatrix}
+      \cos\theta & \sin\theta \\
+      -\sin\theta & \cos\theta
+    \end{bmatrix} \begin{bmatrix}
+      x \\ y
+     \end{bmatrix}
+\end{equation}
+\section{Brief Proof for equation (\ref{Equ_aff})}
+\par\noindent
+The equation \ref{Equ_anycen} can be transformed to:
+\begin{equation*}
+  \begin{split}
+  \begin{bmatrix}
+   x^{'} \\ y^{'}
+   \end{bmatrix} &= \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix} \left(\begin{bmatrix} x \\ y \end{bmatrix} - \begin{bmatrix} c_{x} \\ c_{y} \end{bmatrix}\right) + \begin{bmatrix} c_{x} \\ c_{y} \end{bmatrix} \\
+                 &= \begin{bmatrix}
+          \cos\theta & \sin\theta \\
+          -\sin\theta & \cos\theta
+        \end{bmatrix}
+        \begin{bmatrix}
+          x \\ y
+         \end{bmatrix} - \begin{bmatrix}
+            \cos\theta & \sin\theta \\
+            -\sin\theta & \cos\theta
+          \end{bmatrix}\begin{bmatrix}
+            c_{x} \\ c_{y}
+          \end{bmatrix} + \begin{bmatrix}
+            c_{x} \\ c_{y}
+          \end{bmatrix} \\
+          &= \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix}
+          - \begin{bmatrix} c_{x}\cos\theta + c_{y}\sin\theta \\ -c_{x}\sin\theta + c_{y}\cos\theta \end{bmatrix} +
+           \begin{bmatrix} c_{x} \\ c_{y} \end{bmatrix} \\
+          &= \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix}
+          + \begin{bmatrix} c_{x}(1 - \cos\theta) - c_{y}\sin\theta \\ c_{y}(1 - \cos\theta) + c_{x}\sin\theta \end{bmatrix}
+\end{split}
+\end{equation*}
