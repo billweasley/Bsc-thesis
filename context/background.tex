@@ -3,18 +3,25 @@
 % reading and research
 % !!!Project requirement
 \section{Background}
-\subsection{The problem to be solved}
 
 \subsection{Existing solution}
+There is an existing simulator called NETCS \cite{DBLP:journals/corr/AmaxilatisLMS15} for network constructor, which is the model covered
+in this paper \cite{MS16a}, the simulator was written in Java, provided an web user interface
+and assisted related research.
+
+\par\noindent
+This work will explore the possibility to simulate a further variance of network constructor, grid network constructor, as well as attempting
+to provide a uniform simulation to different models and protocols, which is easily extensible.
+
 
 \subsection{Brief Introduction to Population Protocols \label{background} \cite{AspnesR2007, MCS11}}
 \par\noindent
-Population protocols are theoretical models for distributed computation.
+Population protocols are theoretical models for distributed computation \cite{AspnesR2007, MCS11}.
 The model contains a collection of indistinguishable agents.
 They (i.e. the agents) carry out computation tasks through directly pair-wised interactions.
 The interaction pattern of agents is unpredictable from perspective of agents themselves
-and is controlled through an adversary scheduler with fairness constraints.
-\paragraph{Formal Definition}
+and is controlled through an adversary scheduler with fairness constraints \cite{AspnesR2007, MCS11}.
+\paragraph{Formal Definition \cite{AspnesR2007}}
 A protocol can be formally defined as:
 \begin{itemize}
   \item $Q$, a finite set of passible states for an agent,
@@ -29,16 +36,16 @@ A protocol can be formally defined as:
 \par\noindent
 A \textit{configuration} for a population is a vector of all the agents' states.
 Because agents with a same state are indistinguishable with each other, each configuration
-could also an unordered multiset of states. It can be represented as $C$.
+could also an unordered multiset of states. It can be represented as $C$ \cite{AspnesR2007, MCS11}.
 
 
 \par \label{IntroToPPFairScheduler} \noindent
 At any point of the discrete time, the interaction is unpredictable from the perspective of the agents
 in the population and the population itself. The interactions at any time are decided
-by a adversary scheduler necessarily enforced with \textit{fairness} condition.
+by a adversary scheduler necessarily enforced with \textit{fairness} condition \cite{AspnesR2007, MCS11}.
 The fairness condition means that the scheduler cannot avoid a possible step forever.
 Formally, it means if a infinitely often configuration $C$ and $C \to C^{'}$,
-the $C^{'}$ must also appear infinitely of in the execution.
+the $C^{'}$ must also appear infinitely of in the execution \cite{AspnesR2007}.
 
 
 \begin{figure}[H]
@@ -76,7 +83,7 @@ The current implementation of this work assumes a more strict scheduler called r
 which resulting uniform random interactions (i.e. at each step, it presents
 equally possibility for every pair of agents to interact.) Essentially, a random scheduler is a "fair" scheduler, but a "fair" scheduler is not necessarily a random scheduler.
 The assumption actually increases the power of the model because it allows a leader agent detects the absence
-of agents in a particular state after a long enough waiting. Note this is only for
+of agents in a particular state after a long enough waiting \cite{AspnesR2007}. Note this is only for
 simplifying the current implementation and possibly extends to other fair schedulers that is not a
 random scheduler in the future.
 
@@ -85,19 +92,19 @@ random scheduler in the future.
 \par\noindent
 A variance of population protocol is called "network constructor" \cite{MS16a}.
 It involves the extra elements do not existing in general population protocol called "edge", which is
-the connection in between any two agents (or "processes"). In general, the connection
-is similar to the agents, on the characteristic that they all only have a finite number of states. For instance, if
+the connection in between any two agents (or "processes") \cite{MS16a}. In general, the connection
+is similar to the agents, on the characteristic that both of them have a finite number of states. For instance, if
 a connection have $k + 1$ states,  state 0 may represent the connection does not exist and for state $i \in \{1,2,3, ..., k\}$
 shows the strength for a particular connection.
 
 
 \par\noindent
 In the following paragraph and the currently implemented simulator, we solely consider the simplest
-case containing only $on$ and $off$ two states for edges. A connection is said to be in
+case containing only $on$ and $off$ two states for edges  \cite{MS16a}. A connection is said to be in
 $on$ or $active$ state, if at any discrete time, the connection exists in between two
-particular nodes; otherwise if the connection is stated as in $off$ or $inactive$ state.
+particular nodes; otherwise if the connection is stated as in $off$ or $inactive$ state  \cite{MS16a}.
 At initial, all edge are in $off$ state, which means that there is no connection in a given
-population at discrete time 0. The state for an edge may or may not change through an interaction
+population at discrete time 0  \cite{MS16a}. The state for an edge may or may not change through an interaction
 in between the two nodes it connected or disconnected to.
 
 
@@ -105,7 +112,7 @@ in between the two nodes it connected or disconnected to.
 The network constructor also follows an adversary scheduler with "fairness" constraint. This is
 exactly same as the paragraphs mentioned in the previous section \ref{IntroToPPFairScheduler}.
 
-\paragraph{Formal Definition}
+\paragraph{Formal Definition \cite{MS16a}}
 Formally, a network constructor can be defined as:
 \begin{itemize}
   \item $Q$, a finite set of passible states for an agent,
@@ -117,27 +124,27 @@ Formally, a network constructor can be defined as:
 
 \par\noindent
 The main target of this model concentrates on network construction rather than
-specific function computation, which is the task for general population protocol. Notice that a transition can be either \textit{effective}
+specific function computation, which is the task for general population protocol \cite{MS16a}. Notice that a transition can be either \textit{effective}
 or \textit{ineffective}. Define $\delta(a, b, c) = (a^{'}, b^{'},c^{'})$ as a transition function (Here, $a, b$ are "node-state" whereas $c$ is state for edge.)
 as it is in the formal definition, $\delta_{1}(a,b,c) = a^{'}$, $\delta_{2}(a,b,c) = b^{'}$ (representing two nodes states' change)
 and $\delta_{3}(a,b,c) = c^{'}$ (representing edge state change), the transition $(a,b,c) \to (a^{'}, b^{'},c^{'})$ is called
-effective if at least one $x \in \{a,b,c\} \not= x^{'} $; otherwise it is called ineffective.
+effective if at least one $x \in \{a,b,c\} \not= x^{'} $; otherwise it is called ineffective \cite{MS16a}.
 
 
 \par\noindent
 Name the set of nodes (or "distributed processes" under this context) $V_{I}$ and the set of pairs of nodes as $E_{I}$.
 A configuration $C$ is a mapping $ V_{I} \cup E_{I} \to Q \cup \{0,1\} $ determines the states of nodes and edges in the population at any discrete time.
 The output of configuration $C$ is defined as the graph $G(C) = (V, E) $ where $V = \{u \in V_{I}: C(u) \in Q_{out}\}$
-and  $E = \{uv: u, v \in V, u \not= v,$ and $C(uv) = 1\}$.
+and  $E = \{uv: u, v \in V, u \not= v,$ and $C(uv) = 1\}$ \cite{MS16a}.
 
 \subsection{Grid Terminating Network Constructor \cite{Mi17} \label{IntroToGrid}}
 
 \par\noindent
 Another paper \cite{Mi17} presents a different automata but very similar to network constructor. Each node in this
 model has a fixed number of ports with it. In the 2-dimensional case, it will have 4 distinguished ports
-$p_{y}$, $p_{x}$, $p_{-y}$ and $p_{-x}$, may simply donated as $u$, $r$, $d$ and $l$, respectively.
+$p_{y}$, $p_{x}$, $p_{-y}$ and $p_{-x}$, may simply donated as $u$, $r$, $d$ and $l$, respectively \cite{Mi17} .
 The port, which neighbour with each other, are also perpendicular to each other, forming local axes. Hence,
-$ u \perp r $, $ r \perp d $, $ d \perp l $, and  $ l \perp u $. The coordinates are only for local purposes and
+$ u \perp r $, $ r \perp d $, $ d \perp l $, and  $ l \perp u $ \cite{Mi17} . The coordinates are only for local purposes and
 do not necessarily represent the actual orientation of a node. A connection (or edge) can only be built through
 pairs of ports, which is different from the previous model (network constructor).
 
@@ -163,7 +170,7 @@ pairs of ports, which is different from the previous model (network constructor)
 
 
 \par\noindent
-\paragraph{Formal Definition}
+\paragraph{Formal Definition \cite{Mi17} }
 Formally, a terminating grid network constructor in 2-D can be defined as:
 \begin{itemize}
   \item $Q$, a finite set of passible states for an agent,
@@ -176,25 +183,25 @@ Formally, a terminating grid network constructor in 2-D can be defined as:
 \par\noindent
 A transition can be either \textit{effective}
 or \textit{ineffective}. Define $\delta((a, p_{1}), (b, p_{2}), c) = (a^{'}, b^{'},c^{'})$ as a transition function
-as it is in the formal definition, it is called effective if at least one $x \in \{a,b,c\} \not= x^{'} $; otherwise it is called ineffective.
+as it is in the formal definition, it is called effective if at least one $x \in \{a,b,c\} \not= x^{'} $; otherwise it is called ineffective \cite{Mi17}.
 
 
 \par\noindent
 Every configuration $C$ forms a set of shapes $G[A(C)]$, where a shape means that the network induced
-by active edges of $C$. Given the geometrical restrictions (i.e. the connection are
+by active edges of $C$ \cite{Mi17}. Given the geometrical restrictions (i.e. the connection are
 made at unit distance and are perpendicular whenever they correspond to consecutive ports of a node),
-not all possible $A(C)$ are valid. $A(C)$ is valid if any connected component defined by it is a
+not all possible $A(C)$ are valid \cite{Mi17}. $A(C)$ is valid if any connected component defined by it is a
 subnetwork of 2D grid network with unit distances. A valid $A(C)$ at time $t -1$ also restricts the
-possible valid $A(C)$ at time $t + k$, where $k \in Integer$ and $k \geq 0 $.
+possible valid $A(C)$ at time $t + k$, where $k \in Integer$ and $k \geq 0 $ \cite{Mi17}.
 
 
 \par\noindent
 The paper \cite{Mi17} also defines a set of
 shapes $G_{out}(C) = \{V_{s}, E_{s}\}$ as output of a configuration where $V_{s} = \{u \in V : C_{v}(u) \in Q_{out} \}$
-and $E_{s} = A(C) \cap \{ (v_{1}, p_{1}) : v_{1} \not= v_{2} \in V_{s}; p_{1}, p_{2} \in P \}$.
+and $E_{s} = A(C) \cap \{ (v_{1}, p_{1}) : v_{1} \not= v_{2} \in V_{s}; p_{1}, p_{2} \in P \}$ \cite{Mi17}.
 Less formally, the output shapes of a configuration contains all nodes in output states and the active edges in between them.
 This model focuses on terminating protocols so it assumes $Q_{out} \subseteq Q_{halt} \subseteq Q $.
-All rules containing $q_{halt} \in Q_{halt} $ is ineffective.
+All rules containing $q_{halt} \in Q_{halt} $ is ineffective \cite{Mi17}.
 
 \subsection{Vector transformation: handle coordinate rotations in 2-dimension}
 
@@ -202,7 +209,7 @@ All rules containing $q_{halt} \in Q_{halt} $ is ineffective.
 \par\noindent
 As mentioned in the previous section \ref{IntroToGrid}, Grid Terminating Network Constructor enforces perpendicular ports
 and geometrical restrictions. This means that handling rotation in some cases becomes necessary.
-This section will cover some basic but related vector mathematics. The detailed algorithms will be discussed later on, in the "Realisation" section (\ref{Realisation}).
+This section will cover some basic but related vector mathematics. The detailed algorithms will be discussed later on, in the section (\ref{design}).
 
 \subsubsection{2D centred coordinate rotation, with origin point as the centre}
 
@@ -239,7 +246,7 @@ To solve this, the following equation can be concluded:
 
 
 \par\noindent
-A brief proof can be found in appendix partition below and it also can be found in \cite{Mitnote09} with a more precise and general proof.
+A brief derivation can be found in appendix partition below and it also can be found in \cite{Mitnote09} with a more precise and general proof.
 
 
 \subsubsection{2D centred coordinate rotation, with any points as the centre}
@@ -261,11 +268,11 @@ Suppose the target point that is required to be rotated is called $p$ (with coor
         c_{x} \\ c_{y}
        \end{bmatrix}
 \end{equation}
-
+$p_{'}$ (with coordinate $(x_{'}, y_{'})$) will be point after $p$ rotating centred on $c$.
 \subsubsection{Affine transformation form}
 After a series of transformation, the equation \ref{Equ_anycen} becomes the following form:
 
-\begin{equation} \label{Equ_aff}W
+\begin{equation} \label{Equ_aff}
   \begin{bmatrix}
    x^{'} \\ y^{'}
    \end{bmatrix}  = \begin{bmatrix} \cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix}

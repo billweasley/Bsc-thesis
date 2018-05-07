@@ -1,4 +1,0 @@
-PWD C:/Users/billw/Desktop/Dissertation/context
-INPUT c:/texlive/2017/texmf-var/web2c/xetex/xelatex.fmt
-INPUT ./introduction.tex
-OUTPUT out/introduction.log

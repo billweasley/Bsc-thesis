@@ -14,8 +14,13 @@
 \usepackage{suffix}
 \usepackage{float}
 \usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
 
 
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
 % COMMANDS
 
 \newcommand\cell[2]{\parbox{#1\textwidth}{\vspace{3pt}#2\vspace{3pt}}}
@@ -114,7 +119,7 @@
     EXP, FLOOR, GLOBAL, JEFFE, JKFF,
     LATCH, LCELL, MCELL, MEMORY, OPNDRN,
     SOFT, SRFFE, SRFF, TFFE, TFF, TRI,
-    WIRE, X
+    WIRE, X,VAR,VAL
   },
   sensitive=false,
   morecomment=[l]{--},
