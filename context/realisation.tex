@@ -230,7 +230,7 @@ in terminating grid network constructor will be represented as a connected graph
 \par\noindent
 Since the node representation is a graph in general, the basic manipulation of node representation in other will not suit for the node representation of
 terminating grid network. Suppose there is a node representation has a real coordinate $(x_{np}, y_{np})$ (It is called "real coordinate" because the coordinate represents the true
-location of the node representation and is distinct to the concept "relative coordinate" appearing model part.) and rotation degree $\theta_{np}$, and it intends to
+location of the node representation and is distinct to the concept "relative coordinate" appearing in the model part.) and rotation degree $\theta_{np}$, and it intends to
 another real coordinate $(x_{nq}, y_{nq})$, the movement would follows steps:
 \begin{itemize}
   \item Move the centred node representation to coordinate $(x_{nq}, y_{nq})$
@@ -260,9 +260,9 @@ The viewer is following a "generator" pattern, which means its simulation is ste
 state and then resume at any time hence naturally results such a functionality.
 \par\noindent
 The fast-forwarding function allows user to specify a number for pre-executed selections (not number of interactions because some interactions may ineffective interactions),
-and then show the results on the viewer directly after such that numbers of selections. This is normally fast then simulate step by step and the key of the pattern is that
-it simulates only in the model partition but does not demonstrate in the viewer part, so this function will save a large amount of time from communication and synchronisation in between
-model and viewer, and also save a large amount of time from visualization animation.
+and then show the results on the viewer directly after such that numbers of selections. This is normally fast then simulate in a step by step way. The key of this pattern is that
+it simulates only in the model partition but does not demonstrate changes in the viewer part for initial steps, so this function will save a large amount of time from communication and synchronisation in between
+model and viewer, and so from visualization animation.
 \paragraph{Protocol expansibility}
 Despite of the DSL was failed to be implemented, it was still possible to find some other ways to simply the process to define users' own protocols.
 A possible solution might be reflection, which means “the ability of a program to manipulate as data something representing the state of the
