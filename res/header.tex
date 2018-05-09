@@ -16,6 +16,10 @@
 \usepackage{amsmath}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
+\usepackage{placeins}
+\usepackage{afterpage}
+
+
 
 
 \makeatletter
@@ -101,6 +105,23 @@
 
 
 % LISTING
+\lstdefinelanguage{Kotlin}{
+  keywords={package, as, as?, typealias, this, super, val, var, fun, for, null, true, false, is, in, throw, return, break, continue, object, if, try, else, while, do, when, class, interface, enum, object, companion, override, public, private, get, set, import, abstract, vararg, expect, actual, where, suspend, data, internal, final, by, dynamic},
+  keywordstyle=\color{mylightblue}\bfseries,
+  ndkeywords={@Deprecated, @JvmName, @JvmStatic, @JvmOverloads, @JvmField, @JvmSynthetic, Iterable, Int, Long, Integer, Short, Byte, Float, Double, String, Runnable, Array},
+  ndkeywordstyle=\color{myorange}\bfseries,
+  emph={println, return@, forEach, map, mapNotNull, first, filter, firstOrNull, lazy, delegate},
+  emphstyle={\color{red}},
+  identifierstyle=\color{black},
+  sensitive=true,
+  commentstyle=\color{gray}\ttfamily,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  stringstyle=\color{mygreen}\ttfamily,
+  morestring=[b]",
+  morestring=[s]{"""*}{*"""},
+}
+
 \lstdefinelanguage{ahdl}{
   morekeywords={
     AND, ASSERT, BEGIN, BIDIR, BiTS, BURIED,
@@ -164,6 +185,7 @@
 \definecolor{mygreen}{rgb}{0,0.7,0.5}
 \definecolor{myorange}{rgb}{1.0,0.4,0}
 \definecolor{mylilas}{rgb}{0.8,0.3,1.0}
+\definecolor{mylightblue}{rgb}{0.36,0.54,0.66}
 
 \lstdefinestyle{mybase} {
 	breaklines=true,
@@ -187,6 +209,10 @@
 \lstdefinestyle{myjava} {
   style=mybase,
   language=java
+}
+\lstdefinestyle{mykotlin} {
+  style=mybase,
+  language=kotlin
 }
 
 \lstdefinestyle{myahdl} {
@@ -233,6 +259,7 @@
 \end{flushright}
 \end{minipage}
 }
+
 \date{\scriptsize{\today}}
 
 % footnote

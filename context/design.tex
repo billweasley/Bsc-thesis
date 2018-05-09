@@ -74,7 +74,7 @@ $p$ associated pointing to an another non-null node $n^{'}$ and so similar for t
 In contrast, the connection (or "edge") on a port is deemed as "inactive" if the port reference pointing to null.
 
 \par\noindent
-\begin{lstlisting}[caption = {Pseudo-code demonstration of quad-direction linked structure}, style = myjava]
+\begin{lstlisting}[caption = {Pseudo-code demonstration of quad-direction linked structure}, style = mykotlin]
   class LocallyCoordinatedModelNode(...){
     var up: LocallyCoordinatedModelNode? = null
     var down: LocallyCoordinatedModelNode? = null
@@ -173,7 +173,7 @@ after a node interacts with each other during simulation process. There are two 
 The second approach is more feasible since it supposed to cost a impracticable long time to enumerate all possible elements in $A(C)$ at a particular discrete step.
 Hence, it would be discussed for the cases that should be rejected in an interaction.
 
-\subparagraph{Avoid self-connection}\noindent
+\paragraph{Avoid self-connection}\noindent
 Recall the definition of transition function of grid network constructor, two nodes and two edges associated them respectively are selected.
 This not excludes the case that one same identity select twice, which leading to a
 unsound connection on the selected node itself. This should be avoid through prohibiting the second nodes being selected if it is the
@@ -187,7 +187,7 @@ same entity with the first one.
 \end{figure}
 
 \par\noindent
-\subparagraph{Avoid unit-distance violation}\noindent
+\paragraph{Avoid unit-distance violation}\noindent
 A connection in terminating grid network constructor has to follow the unit distance restriction.
 \begin{figure}[H]
 \begin{center}
@@ -235,7 +235,7 @@ which is asserted to be 1 otherwise it means that unit-distance restriction will
 \end{algorithm}
 
 
-\subparagraph{Avoid overlapping}\noindent
+\paragraph{Avoid overlapping}\noindent
 Overlapping is another situation that persuades a configuration become an acceptable
 configuration. This normally happens when two nodes that belongs to different cliques
 interacting with each other. This is not allowed for some cases when more than one nodes
@@ -292,10 +292,11 @@ clique that the receiver node belongs to and its y-axisymmetric shape.
     \State $ connectedSetB \gets bfsForRotation(connectedSetB, 180 - ||portB.angle - portA.angle||) $
     \State $ symmetricSetB \gets symmetric(connectedSetB, portA)$
     \If { $(connectedSetA$ $\cap$ $connectedSetB \not= \emptyset)$ $\land$ $(connectedSetA$ $\cap$ $symmetricSetB \not= \emptyset)$}
-      \If {$(connectedSetA$ $\cap$ $connectedSetB \not= \emptyset)$}
-        \State $changeToSymmtricStructure(nodeB, portA)$
-      \EndIf
       \State $\textit{isOverlap} \gets true$
+    \Else
+        \If {$(connectedSetA$ $\cap$ $connectedSetB \not= \emptyset)$}
+          \State $changeToSymmtricStructure(nodeB, portA)$
+        \EndIf
     \EndIf
 \EndIf
 
@@ -367,3 +368,13 @@ Hence, the design would allow user to set their population through the UI contai
 protocols and would allow the users to write their own extensional protocol through few lines of codes.
 As the functionality changes, the UI removed the functionality entrance for loading files from disk and
 added some options to allow user setting the parameters of a protocol.
+
+\subsection{Object used in the system}
+\FloatBarrier
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =0.95\textwidth]{context/diagram/uml_model.pdf}
+\caption{Object-oriented Design: Model Part}
+\label{oomG}
+\end{center}
+\end{figure}

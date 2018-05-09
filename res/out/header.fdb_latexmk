@@ -1,0 +1,11 @@
+# Fdb version 3
+["xdvipdfmx"] 0 "out/header.xdv" "out/header.pdf" "out/header" 0
+  "out/header.xdv" 0 -1 0 "xelatex"
+  (generated)
+  "out/header.pdf"
+["xelatex"] 0 "header.tex" "out/header.xdv" "header" 0
+  "header.tex" 0 -1 0 ""
+  "out/header.aux" 1525824505 9 a94a2480d3289e625eea47cd1b285758 ""
+  (generated)
+  "out/header.log"
+  "out/header.xdv"
