@@ -4,16 +4,6 @@
 % !!!Project requirement
 \section{Background}
 
-\subsection{Existing solution}
-There is an existing simulator called NETCS \cite{DBLP:journals/corr/AmaxilatisLMS15} for network constructor, which is the model covered
-in this paper \cite{MS16a}, the simulator was written in Java, provided an web user interface
-and assisted related research.
-
-\par\noindent
-This work will explore the possibility to simulate a further variance of network constructor, grid network constructor, as well as attempting
-to provide a uniform simulation to different models and protocols, which is easily extensible.
-
-
 \subsection{Brief Introduction to Population Protocols \label{background} \cite{AspnesR2007, MCS11}}
 \par\noindent
 Population protocols are theoretical models for distributed computation \cite{AspnesR2007, MCS11}.
@@ -45,7 +35,7 @@ in the population and the population itself. The interactions at any time are de
 by a adversary scheduler necessarily enforced with \textit{fairness} condition \cite{AspnesR2007, MCS11}.
 The fairness condition means that the scheduler cannot avoid a possible step forever.
 Formally, it means if a infinitely often configuration $C$ and $C \to C^{'}$,
-the $C^{'}$ must also appear infinitely of in the execution \cite{AspnesR2007}.
+then $C^{'}$ must also appear infinitely of in the execution \cite{AspnesR2007}.
 
 
 \begin{figure}[H]
@@ -83,7 +73,7 @@ The current implementation of this work assumes a more strict scheduler called r
 which resulting uniform random interactions (i.e. at each step, it presents
 equally possibility for every pair of agents to interact.) Essentially, a random scheduler is a "fair" scheduler, but a "fair" scheduler is not necessarily a random scheduler.
 The assumption actually increases the power of the model because it allows a leader agent detects the absence
-of agents in a particular state after a long enough waiting \cite{AspnesR2007}. Note this is only for
+of agents for a particular state after a long enough waiting \cite{AspnesR2007}. Note this is only for
 simplifying the current implementation and possibly extends to other fair schedulers that is not a
 random scheduler in the future.
 
@@ -94,18 +84,18 @@ A variance of population protocol is called "network constructor" \cite{MS16a}.
 It involves the extra elements do not existing in general population protocol called "edge", which is
 the connection in between any two agents (or "processes") \cite{MS16a}. In general, the connection
 is similar to the agents, on the characteristic that both of them have a finite number of states. For instance, if
-a connection have $k + 1$ states,  state 0 may represent the connection does not exist and for state $i \in \{1,2,3, ..., k\}$
-shows the strength for a particular connection.
+a connection have $k + 1$ states,  state 0 may represent the connection does not exist and state $i \in \{1,2,3, ..., k\}$
+show the strength for a particular connection.
 
 
 \par\noindent
-In the following paragraph and the currently implemented simulator, we solely consider the simplest
+In the document and the currently implemented simulator, we solely consider the simplest
 case containing only $on$ and $off$ two states for edges  \cite{MS16a}. A connection is said to be in
 $on$ or $active$ state, if at any discrete time, the connection exists in between two
 particular nodes; otherwise if the connection is stated as in $off$ or $inactive$ state  \cite{MS16a}.
 At initial, all edge are in $off$ state, which means that there is no connection in a given
 population at discrete time 0  \cite{MS16a}. The state for an edge may or may not change through an interaction
-in between the two nodes it connected or disconnected to.
+in between the two nodes that the edge currently connected or disconnected to.
 
 
 \par\noindent
@@ -136,6 +126,8 @@ Name the set of nodes (or "distributed processes" under this context) $V_{I}$ an
 A configuration $C$ is a mapping $ V_{I} \cup E_{I} \to Q \cup \{0,1\} $ determines the states of nodes and edges in the population at any discrete time.
 The output of configuration $C$ is defined as the graph $G(C) = (V, E) $ where $V = \{u \in V_{I}: C(u) \in Q_{out}\}$
 and  $E = \{uv: u, v \in V, u \not= v,$ and $C(uv) = 1\}$ \cite{MS16a}.
+
+
 
 \subsection{Grid Terminating Network Constructor \cite{Mi17} \label{IntroToGrid}}
 
@@ -191,7 +183,7 @@ Every configuration $C$ forms a set of shapes $G[A(C)]$, where a shape means tha
 by active edges of $C$ \cite{Mi17}. Given the geometrical restrictions (i.e. the connection are
 made at unit distance and are perpendicular whenever they correspond to consecutive ports of a node),
 not all possible $A(C)$ are valid \cite{Mi17}. $A(C)$ is valid if any connected component defined by it is a
-subnetwork of 2D grid network with unit distances. A valid $A(C)$ at time $t -1$ also restricts the
+subnetwork of 2D grid network with the unit distance. A valid $A(C)$ at time $t -1$ also restricts the
 possible valid $A(C)$ at time $t + k$, where $k \in Integer$ and $k \geq 0 $ \cite{Mi17}.
 
 
@@ -200,14 +192,23 @@ The paper \cite{Mi17} also defines a set of
 shapes $G_{out}(C) = \{V_{s}, E_{s}\}$ as output of a configuration where $V_{s} = \{u \in V : C_{v}(u) \in Q_{out} \}$
 and $E_{s} = A(C) \cap \{ (v_{1}, p_{1}) : v_{1} \not= v_{2} \in V_{s}; p_{1}, p_{2} \in P \}$ \cite{Mi17}.
 Less formally, the output shapes of a configuration contains all nodes in output states and the active edges in between them.
-This model focuses on terminating protocols so it assumes $Q_{out} \subseteq Q_{halt} \subseteq Q $.
+This model was designed as terminating protocols so it assumes $Q_{out} \subseteq Q_{halt} \subseteq Q $.
 All rules containing $q_{halt} \in Q_{halt} $ is ineffective \cite{Mi17}.
+
+\subsection{Existing solution}
+There is an existing simulator called NETCS \cite{DBLP:journals/corr/AmaxilatisLMS15} for network constructor, which is the model covered
+in this paper \cite{MS16a}. The simulator was written in Java, providing an web user interface
+and assisting related research.
+
+\par\noindent
+This work will explore the possibility to simulate a further variance of network constructor, grid network constructor, as well as attempting
+to provide a uniform simulation to different models and protocols, which would be easily extensible.
 
 \subsection{Vector transformation: handle coordinate rotations in 2-dimension}
 
 
 \par\noindent
-As mentioned in the previous section \ref{IntroToGrid}, Grid Terminating Network Constructor enforces perpendicular ports
+As mentioned in the previous section \ref{IntroToGrid}, grid terminating network constructor enforces perpendicular ports
 and geometrical restrictions. This means that handling rotation in some cases becomes necessary.
 This section will cover some basic but related vector mathematics. The detailed algorithms will be discussed later on, in the section (\ref{design}).
 
@@ -217,7 +218,7 @@ This section will cover some basic but related vector mathematics. The detailed 
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=0.6\textwidth]{context/diagram/2d_vector.pdf}
+\includegraphics[width=0.5\textwidth]{context/diagram/2d_vector.pdf}
 \caption{Vector $\vec{r}$ and $\vec{r_{'}}$ in unit circle}
 
 \label{vectorG}
@@ -225,9 +226,9 @@ This section will cover some basic but related vector mathematics. The detailed 
 \end{figure}
 
 \par\noindent
-The figure \ref{vectorG} has two same-length vectors,  $\vec{r}$ (or $\vec{AB}$) and $\vec{r_{'}}$ (or $\vec{AB_{'}}$) in its Cartesian coordinate and their destination point located at the same unit circle.
-The point $A$ is the origin point with coordinate $(0, 0)$. Suppose it has already known for the coordinate of $B$ is
-$(x,y)$, and the $\theta$ angle. The question is that what the coordinate of $B^{'} $ (representing in $(x^{'},y^{'})$) is, after the first vector $\vec{r}$ rotates the given angle $\theta$ and becomes $\vec{r_{'}}$.
+The figure \ref{vectorG} has two same-length vectors,  $\vec{r}$ (or $\vec{AB}$) and $\vec{r_{'}}$ (or $\vec{AB_{'}}$) in the Cartesian coordinate and their destination point located at the same unit circle.
+The point $A$ is the origin point with coordinate $(0, 0)$. Suppose it has already known that the coordinate of $B$ is
+$(x,y)$, and the $\theta$ angle. The question is that what the coordinate of $B^{'} $ (representing in $(x^{'},y^{'})$) is, after the first vector $\vec{r}$ rotating the given angle $\theta$ and becoming $\vec{r_{'}}$.
 Note that, the "positive" rotation direction in current context and the implementation of the simulator is defined as "clock-wised".
 
 \par\noindent
@@ -246,12 +247,12 @@ To solve this, the following equation can be concluded:
 
 
 \par\noindent
-A brief derivation can be found in appendix partition below and it also can be found in \cite{Mitnote09} with a more precise and general proof.
+A brief derivation can be found in appendix below and it also can be found in \cite{Mitnote09} with a more precise and general proof.
 
 
 \subsubsection{2D centred coordinate rotation, with any points as the centre}
 Given the equation (\ref{Equ_ori}), it can be easily
-deduced that the rotation equation for any centred points $c$ with coordinate $(c_{x}, c_{y})$ can be achieved through
+deduced the fact that the rotation equation for any centred points $c$ with coordinate $(c_{x}, c_{y})$ can be achieved through
 panning $c$ to origin point with coordinate $(0, 0)$, carry out the rotation and panning back to its original coordinate $(c_{x}, c_{y})$.
 Suppose the target point that is required to be rotated is called $p$ (with coordinate $(x, y)$), it then has :
 \begin{equation} \label{Equ_anycen}

@@ -1,14 +1,21 @@
 \section{Introduction}
 % problem, objective, aims, !self-contained document!, challenges, solutions, how effective for the solutions
-\subsection{Aims and Objectives}
+\subsection{Addressed Problem}
+Population protocol is a theoretical model for distributed computation \cite{AspnesR2007, MCS11}.
+The model contains a collection of indistinguishable agents. The network constructor \cite{MS16a} and the
+terminating grid network constructor \cite{Mi17} are some models extending population protocol but with a different aim to construct network in different topologies.
+There was a previous work called \textit{netcs} to simulate models of network constructor but there is no attempts
+to simulate protocols for terminating grid network constructor and produce integrated simulator containing all these three models.
+Hence, this project will attempt to simulate some models of terminating grid network constructor, create an integrated simulator and
+use the simulator to observe some protocols of these three models mentioned above.
 
+\subsection{Aims and Objectives}
 \par\noindent
 The project aimed to study general population protocols \cite{AspnesR2007} and
 its two derived model,
-network constructor \cite{MS16a} and terminating grid network constructor \cite{Mi17}
-(specifically for grid network construction).
-It also attempted to experimentally simulate, visualise and compare these protocols
-via building the simulator and visualizer.
+network constructor \cite{MS16a} and terminating grid network constructor. \cite{Mi17}
+It also attempted to experimentally simulate and visualise these protocols
+via building an extensible simulator and visualizer.
 
 \subsection{The challenges in the project}
 \subsubsection{Heterogeneous for different types of Models}
@@ -27,24 +34,17 @@ the other two types of model.
 \par\noindent
 The protocols discussed in the related papers \cite{AspnesR2007, MS16a, Mi17} involve
 many different protocols. The protocols are totally different on many characteristics,
-such as their different computational ability, different ending in either or termination,
-computation target. These differences between
+such as their different computational ability, different ending way in either convergence or termination and different
+computation target. These differences from
 protocol to protocol may lead the simulator and visualizer hard to develop and test.
 
-\subsubsection{Human factor: Lacking Experience for model visualization}
-
-\par\noindent
-Prior to this project, the author has totally no experiences on model simulation and
-also no knowledge on what kind of related library will be involved. Learning may take
-more time than its expected.
-
-\subsubsection{Brief introduction to the programme}
+\subsection{Produced solution: Brief introduction to the programme}
 
 \par\noindent
 The final programme contains an UI with an fix-sized area to illustrate the interaction process of
 a particular protocol and shows the states of elements\footnote{\noindent "Elements" refers nodes in general population protocol,
-but also includes edge if the protocol involves edge states.} in the population.
-In addition, it contains a information panel containing some related
+but also includes edge if the protocol involves edge states.} of the population.
+In addition, it contains an information panel presenting some related
 information with regard to the population itself, including:
 \begin{itemize}
   \item Number of nodes
@@ -54,22 +54,37 @@ information with regard to the population itself, including:
 \end{itemize}
 
 \par\noindent
-Additionally, it provides a set of parameters' settings regarding the initial configuration of a protocol and a population to be simulated, which includes:
+Additionally, it provides a set of parameters' settings regarding the initial configuration of a protocol to be simulated, which includes:
 \begin{itemize}
   \item The number of nodes included in the simulation
   \item The initial state for each node\footnote{\noindent The state of edge for network constructors (i.e. network constructor and terminating grid network constructor) should be always "0" (i.e. inactivated) at initial, so it is omitted here.}
-  \item The protocol type (and also different sets of transition rules for the protocol)
+  \item The protocol type (and also different sets of transition rules correspondingly for the protocol)
   \item Option on whether to use fast-forward simulation method for initially $n$-times selection, and the value of $n$ if the option is enabled.
   A fast-forward simulation executed in the model but does not present that process in the viewer so it normally faster than the case that does not enable this option.
 \end{itemize}
 
-\subsubsection{Evoluation of the project}
+\par\noindent
+The simulator is able to simulate these three different types of models mentioned before and allows user to define their own protocols using simplified
+kotlin language with some specific conventions.
 
 \par\noindent
-In general, the simulator successfully implemented a series of different protocols for the three model mentioned above.
+The simulator finally exams a series of defined protocols and find that the dancing protocol will hard to converge under the case that number of leaders are slightly more than the followers
+in its initial configuration.
 
-\paragraph{UI} The UI functions of simulator is verified through a large number of different population simulations. This ensures the UI functions work as they expected in design stage.
+\subsection{Testing of the project}
+
+\par\noindent
+In general, the simulator contains two main partition, the viewer (user interface) and the model.
+
+\paragraph{Viewer, or User Interface} The UI functions of simulator is verified through a large number of different population simulations. This ensures the UI functions work as they expected in design stage.
 These experiments on theoretical model may also be asserted the correctness of model through the output configuration of these simulations.
 
-\paragraph{Model} The model partition of the simulator developed through Testing driven development method. According to the specification, the testing suits had been written before the written of any
+\paragraph{Model} The model partition of the simulator developed through Testing driven development method. According to the specification, the unit tests written in JUnit \cite{JUnit} had been written before the written of any
 model code . The model code has to pass all testing suits after their implementation.
+
+\subsection{Evaluation of the project}
+In general, the project is successful because the delivered version had finished most of the functionalities. It is still have an issue when
+attempting to simulate protocols in terminating grid network constructor causing from the current implementation would ignore the axisymmetric cases for some situation and sometimes may lead to
+over-rejection. Also, the Domain Specific Language is not been defined and its parser finally is given up in the new design. Though there are some flaws and improvement points existing, the project generally produces a working simulator as it
+proposed to be within the limited time of implementation. The experiments on dancing protocol also demonstrate that the simulator can assist the studies or researches
+related to population protocol.

@@ -13,6 +13,7 @@
 }
 \def\reporttitle{
  COMP 395 Internet Computing Final Year Project : \\
+
  Simulation, Visualization and Experimental analysis for \\Population Protocols and Network Constructor
 \\ in 2-Dimensional Case}
 \def\studentid{
@@ -22,9 +23,56 @@
 Department of Computer Science\\ University of Liverpool
 }
 \def\theabstract{ %
-The abstract\cite{AspnesR2007} \cite{MS16a} \cite{Mi17}
-  %summery, contribution, summery of introduction
+\large{
+\noindent
+Population protocol is a theoretical model for distributed computation \cite{AspnesR2007, MCS11}.
+The model contains a collection of indistinguishable agents. The network constructor \cite{MS16a} and the
+terminating grid network constructor \cite{Mi17} are two models extending population protocol and are able to construct network in different topologies.
+\newline
+
+\par\noindent
+The main aims of this project is to study for these three distributed theoretical models and then experimentally simulate and visualise protocols
+via building the simulator and visualizer. In order to effectively simulate the models of terminating grid network constructor,
+the author studies and list all possible kinds of situation for illegal configurations (which are vectors describing the status for
+agents) and presents solutions to avoid these illegal cases happens. The simulator was finally built up using
+Kotlin language and some related libraries. During the period for implementation of model in the software , the test-driven method was
+applied and the unit tests had been written before any model related coding started. To ensure the extensibility of the
+simulator, the reflection technique was used to dynamically load user defined protocol during
+starting period of the application.
+\newline
+
+\par\noindent Finally, the simulation experiments for dancing protocol \cite{AspnesR2007} successfully show its inefficiency under
+some particular initial configurations. This also demonstrates the simulator is able to assist researches related
+to population protocol.
 }
+
+}
+
+\def\theacknowledgement{
+\centering
+\Large{\noindent
+\textit{First of all,
+I would express my sincere gratitude to my parents, \\
+named \textbf{Baoqin Zhou} and \textbf{Yongge Wang}, \\
+who enable me have a such a great opportunity to study in a different country
+to hone my skills and gain useful knowledge.}
+\newline
+
+\par\noindent
+\textit{Then I would appreciate \\
+\textbf{Dr.Othon Michail}, \textbf{Dr. Vitaliy Kurlin} \\
+and many professors, lecturers and teaching assistants \\
+in University of Liverpool and Xi'an Jiaotong-Liverpool University, \\
+for their outstanding delivery of knowledge and great patience.}
+\newline
+
+\par\noindent
+\textit{Finally, I would to thanks to my girlfriend,\\
+who was never appeared in my past 22 years' life, \\
+so I can devote myself in academics. \\
+I do expect your appearance though.}}
+}
+
 % INFORMATION END
 
 \input{res/header}
@@ -39,6 +87,7 @@ The abstract\cite{AspnesR2007} \cite{MS16a} \cite{Mi17}
 \input{context/design}
 \input{context/realisation}
 \input{context/learningpoints}
+\input{context/professionalissues}
 \clearpage
 \makereference{reference.bib}
 \clearpage

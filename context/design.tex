@@ -3,7 +3,7 @@
 \subsection{Anticipated components of the system}
 \par\noindent
 The main partition of the system was a software that enables to simulate
-and visualise each interaction before convergence (or terminate). The project
+and visualise each interaction of a model before convergence (or termination, according to type of model) of this model. The project
 would also attempt to explore one or more protocol to check their internal
 status after finishing the software.
 
@@ -11,7 +11,7 @@ status after finishing the software.
 The simulator would allow users to choose from a set of well-defined protocol and
 specify the parameters for these protocol (e.g. number of agents participating).
 The simulator would allow users to easily extend their own protocol though writing
-structured few lines of code, an the extension should be as easy as possible.
+structured few lines of Kotlin \cite{Kotlin} code.
 
 \par\noindent
 The system expected to have a ability to simulate some variations (which at
@@ -19,7 +19,7 @@ least includes the network constructor \cite{MS16a} and terminating grid network
 of the original protocol according the protocol and dynamically visualise how process (nodes) transfer for each interaction.
 
 \par\noindent
-The interface provided would be a desktop application running on Java Virtual Machine Platform.
+The software would be writing in Kotlin  \cite{Kotlin}. The interface provided would be a desktop application running on Java Virtual Machine Platform.
 A web interface was desirable but would not be guaranteed to deliver.
 
 \paragraph{Modification against original design} The original design mentioned it could include "a configuration parser to
@@ -28,40 +28,40 @@ A web interface was desirable but would not be guaranteed to deliver.
   original design requires a design and implementation of Domain Specific Language (DSL),
   and a parser of this kind of "new language", which is a expected large work load and might be
   infeasible to finish all of them
-  during the project period. This might be done in the following development plan
-  after finishing the project itself.
+  during the project period. This might be included in the following development plan
+  after finishing the project.
 
 \subsection{Data structure, algorithms and pseudo-code for key method}
 \subsubsection{Graph and adjacency list}
 \par\noindent
 For some specific kinds of model, specifically ,the network constructor, a data
-structure to maintain a undirected graph $G$ formed from current configuration $C$ is required. In other words, it requires to maintain
+structure to maintain an undirected graph $G$ given by current configuration $C$ is required. In other words, it requires to maintain
 a group of status of $active$ edges. It aims to construct ”shapes”
 and there are some status for the edge $uv$ in between any nodes (processors) $u$
 and $v$ in the population.
 
 \par\noindent
 To achieve this, an adjacency list would be used to record the connections associated
-with each nodes. Initially, it would be an map with all nodes in the Population
+with each nodes. Initially, it would be an map with all nodes in the population
 as keys and an empty list associated as the value. If the connection in between $u$ and $v$ builds up,
 the node $u$ will be added to the list which the node $v$ corresponds to and vice versa
 (i.e. the $v$ will be added to the list which the key $u$ corresponds to). When an $active$
 connection, say a connection between $u^{'}$ and $v^{'}$ "cancelled" (i.e.
-running from $active$ state to $inactive$ state). The node reference $v^{'}$ in the list that
+running from $active$ state to $inactive$ state), the node reference $v^{'}$ in the list that
 $u^{'}$ as the key would be deleted and so the node reference $u^{'}$ in the list that
 $v^{'}$ as the key.
 
 \paragraph{Modification against original design}
 The original design used an adjacency matrix rather than a adjacency list to represent the
-undirected graph possibly appeared in some model to be simulated. The modification was made based on
+undirected graph that possibly appeared in some model to be simulated. The modification was made based on
 the consideration on space cost. A adjacency matrix requires a fixed $S(N^{2})$ space allocated overhead
 for $N$ nodes in the population while the proposed adjacency list implementation would consume $S(E)$ where
 $E$ is the number of $"active"$ edges, which at most has a value of $\frac{N * (N - 1)}{2}$.
 
 
 \par\noindent
-For every model defined, the initial configuration starts with no $active$ edge so it would be a zero matrix if
-the adjacency matrix is used in the program and maintain a sparse state for most of time during simulation process.
+For every model defined, the initial configuration always starts with no $active$ edge so it would be a zero matrix if
+the adjacency matrix is used in the program and would need to maintain a sparse state for most of time during simulation process.
 A adjacency list might be a better choice since the list would save spaces required than adjacency matrix.
 
 \subsubsection{Quad-direction linked structure}
@@ -89,7 +89,7 @@ For convenience of implementation, the relative node coordinate would be defined
 a node $n$, with it coordinate $(x_{n}, y_{n})$. The nodes that connected to its port $p_{x}, p_{-x}, p_{y}, p_{-y}$
 will have coordinate $(x_{n} + 1, y_{n}), (x_{n} - 1, y_{n}), (x_{n}, y_{n} + 1), (x_{n}, y_{n} - 1)$ respectively.
 Note that the coordinate is localized and from different node, they will have a different perspective of coordinate.
-It is also required to define a parameter $\varphi_{i}$ representing the rotated degree from normal Cartesian coordinates.
+It is also required to define a parameter $\varphi_{i}$ representing the rotated degree from normal Cartesian coordination.
 Here, the "positive" direction can be defined as clockwise.
 
 \paragraph{Relative port degree}
@@ -136,7 +136,7 @@ which is the port difference after involving the rotation of nodes.
 \paragraph{Relative docking port \label{dockerport}}
 Also for convenience of implementation, here two pairs of "relative docking port" would
 be defined. A pair of relative docking port is the pair of ports of which relative
-difference is \ang{180}. Certainly, this limits only two possible pairs of
+difference is \ang{180}. Certainly, if the rotation of nodes is not involved, this limits only two possible pairs of
 relative docking port: port $\{p_{x}, p_{-x}\}$ as the first pair of docking port,
 and port $\{p_{y}, p_{-y}\}$ as the second pair of docking port. Suppose there are
 two nodes shown as exactly in diagram \ref{standardR}, that is, two nodes with \ang{0}
@@ -156,13 +156,13 @@ any of them are not null and also had not been visited, they will be marked and 
 
 \par\noindent
 Consider a \textit{clique} or a connected (sub - )graph in a configuration for the terminating grid network constructor model,
-the BFS can be used to aggregate this kind of clique from any node inside that clique as a set. This set of nodes $S$ can be used
-as an input for a function applying on a batch of nodes, for instance, rotating all nodes according to a centred node.
+the BFS can be used to aggregate this kind of clique from any node inside that clique as a set. This set of nodes can be used
+as an input for a function applying on a batch of nodes in a same clique, for instance, rotating all nodes according to a centred node.
 
 \subsubsection{Terminating grid network constructor: Check acceptable configuration \& Handle rotation}
 \paragraph{Problem: Detecting legal configuration}
 As mentioned in background section, not all possible configurations are acceptable, or say, belong to $A(C)$ given the geometrical restriction\cite{Mi17}.
-Hence, this will requires some inspections to ensure that only the acceptable configurations form
+Hence, this will requires some inspections to ensure that only the acceptable configurations appears
 after a node interacts with each other during simulation process. There are two ways to finish this kind of inspections:
 \begin{enumerate}
   \item List all possible interactions at each discrete step, filter out
@@ -171,13 +171,12 @@ after a node interacts with each other during simulation process. There are two 
   and repeat the process until a acceptable configuration is found. The entire process would be happened in one discrete step.
 \end{enumerate}
 The second approach is more feasible since it supposed to cost a impracticable long time to enumerate all possible elements in $A(C)$ at a particular discrete step.
-Hence, it would be discussed for the cases that should be rejected in an interaction.
+Hence, it would be discussed for what kind of cases should be rejected for an interaction.
 
 \paragraph{Avoid self-connection}\noindent
-Recall the definition of transition function of grid network constructor, two nodes and two edges associated them respectively are selected.
-This not excludes the case that one same identity select twice, which leading to a
-unsound connection on the selected node itself. This should be avoid through prohibiting the second nodes being selected if it is the
-same entity with the first one.
+Recall the definition of transition function of grid network constructor, two nodes and two edges associated with the two nodes respectively are selected.
+This not excludes the case that one same node identity is selected twice, which leading to a
+unsound connection on the selected node itself. This could be avoided through prohibiting the second selection to select an entity as same as the first selection.
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width = 0.5\textwidth]{context/diagram/self-connection.pdf}
@@ -188,7 +187,7 @@ same entity with the first one.
 
 \par\noindent
 \paragraph{Avoid unit-distance violation}\noindent
-A connection in terminating grid network constructor has to follow the unit distance restriction.
+A connection in models of terminating grid network constructor has to follow the unit distance restriction.
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width = 0.8\textwidth]{context/diagram/unitDistanceViolation.pdf}
@@ -198,14 +197,14 @@ A connection in terminating grid network constructor has to follow the unit dist
 \end{figure}
 \par\noindent
 As illustrated in diagram \ref{unitvio}, the left-hand side configuration is acceptable but the right-hand side configuration is not because
-it violate the unit distance. After the connection in the right-hand side being active, the configuration will not be sub-graph of 2-D grid network
+it violates the unit distance. After the connection in the right-hand side being active, the configuration will not be sub-graph of 2-D grid network
 with unit distance restrictions.
 
 \par\noindent
 It can be noticed that unit distance violation always happens when two interacting nodes are belonging to one
-same clique since a rotation will helps if the two nodes are in different clique. The condition
+same clique since a rotation will helps if the two nodes are in different cliques. The condition
 that two nodes are in the same clique simplifies the judgement process. First, it requires to check the
-whether selected two port are docking port according to equation \ref{Equ_port_differ} (so this ensures after activating connection the
+whether the selected two port are docking port according to equation \ref{Equ_port_differ} (so this ensures after activating connection the
 direction of two ports will conform the grid network restriction). If the two ports selected are a pair of
 docking port, the initializer node then will mark itself with coordinate $(0,0)$ and populate the coordinate using
 BFS algorithm. Finally, it will check the Euclidean distance of the two interacting nodes using propagated coordinates,
@@ -248,11 +247,11 @@ appears in the same position.
 \end{center}
 \end{figure}
 \par\noindent
-The figure \ref{overlap} presents a configuration for highlighted nodes and edges.
-This kind of interaction should be rejected. To resolve this, it can be assumed that
-the interaction had already finished and see whether there is at least one pair of nodes
+The figure \ref{overlap} presents an interaction for highlighted nodes and edges.
+This kind of interaction should be rejected because it causes an overlap. To check on this, it can be assumed that
+the interaction had already done and see whether there is at least one pair of nodes
 owning a same coordinate. If it does, the interaction should be rejected because it causes
-an overlap otherwise it should accept the connection.
+an overlap otherwise it should accept the interaction.
 
 \par\noindent
 Note that after populating the coordinate, the coordinates of nodes in clique that the receiver belonging to
@@ -310,7 +309,7 @@ clique that the receiver node belongs to and its y-axisymmetric shape.
 \paragraph{Modification against original design}
 This section is the solution towards the legal configuration checking problem in
 original design document. The original version proposed such a problem without answers.
-For now, the solution have been finished.
+For now, the solution have been figured out.
 
 \subsection{Interaction (Sequence) Design}
 \begin{figure}[H]
@@ -323,10 +322,10 @@ For now, the solution have been finished.
 
 \par\noindent
 The figure \ref{interactionG} illustrates the entire interaction process of the
-simulator. Initially, the user select one protocol from a set of well-defined
-protocols and then select a set of parameters required such as how many nodes to
+simulator. Initially, the users select one protocol from a set of well-defined
+protocols and then select or input a set of parameters such as how many nodes to
 be included in the simulation, the initial status distribution for nodes and so forth.
-Then the user click the "Apply settings button" to apply the model settings. before
+Then the user click the "Apply settings button" to apply the model settings. Before
 applying the model, the program itself would check whether all parameters are
 well-defined, i.e. locating in the value range they should be. If they are, the software
 would load the model otherwise it will reject this particular request from user and
@@ -334,20 +333,20 @@ allow the users to attempt their (possibly) another setting.
 
 \par\noindent
 After the program successfully loaded a model, the user can press the "Start simulation"
-button to start a simulation. A simulation contains multiple rounds. For each round,
-the model executes interaction simulation under the control of scheduler specified in one
+button to start a simulation. A simulation contains multiple steps. For each step,
+the model executes interactions under the control of scheduler specified in one
 of parameters mentioned before and then the model would update the states of elements
  in viewer to show the what happened in the model itself. Following that, the model would
  check whether it reaches a configuration that should stop the simulation. A stop can be caused
  by user's temporarily interruption (pause) or the fact that the number of consistent accumulation of
  inefficient interactions overwhelms a pre-configured parameters defined in the model (which indicates
- a terminating or convergence with a high possibility). If the model does not detect a stop,
- it will continue the "interact - update - checking stop" process as a loop. Once it detect a
- stop, the software will return to state of waiting for starting of a simulation process
- (while the model would keep its internal states and user can build an another new model under this situation).
+ a termination or convergence with a high possibility). If the model does not detect a stop,
+ it will continue the "interact - update - checking stop" process in each step as a loop. Once it detects a
+ stop, the software will return to the state that waits for starting of another simulation process
+ (while the model would keep its internal states and user can build an another new model using a different set of parameters under this situation).
 
  \paragraph{Modification against original design}
-The current design removed a step of sequence in original sequence design called "Initialize scheduler", which located after "Initialize population" step.
+The current design removed a step of sequence in original sequence design called "Initialize scheduler", which located after "Initialize population" state.
 the "Initialize scheduler" process had been integrated into "Initialize population" because
 the scheduler partition does not necessarily separated from the population and can be treated as a partition of a "population" in concept.
 
@@ -366,7 +365,7 @@ that the users load their settings for some population from domain specification
 some files. The DSL is infeasible to be finished due to the limited time of implementation.
 Hence, the design would allow user to set their population through the UI containing a set of well-defined
 protocols and would allow the users to write their own extensional protocol through few lines of codes.
-As the functionality changes, the UI removed the functionality entrance for loading files from disk and
+As the functionality changes, the UI removed the functionality entrance for "loading files from disk" and
 added some options to allow user setting the parameters of a protocol.
 
 \subsection{Object used in the system}

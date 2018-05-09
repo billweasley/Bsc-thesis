@@ -20,7 +20,18 @@
 \usepackage{afterpage}
 
 
-
+\makeatletter
+\renewenvironment{abstract}{%
+    \if@twocolumn
+      \section*{\abstractname}%
+    \else %% <- here I've removed \small
+      \begin{center}%
+        {\bfseries \huge\abstractname\vspace{\z@}}%  %% <- here I've added \Large
+      \end{center}%
+      \quotation
+    \fi}
+    {\if@twocolumn\else\endquotation\fi}
+\makeatother
 
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
@@ -108,7 +119,7 @@
 \lstdefinelanguage{Kotlin}{
   keywords={package, as, as?, typealias, this, super, val, var, fun, for, null, true, false, is, in, throw, return, break, continue, object, if, try, else, while, do, when, class, interface, enum, object, companion, override, public, private, get, set, import, abstract, vararg, expect, actual, where, suspend, data, internal, final, by, dynamic},
   keywordstyle=\color{mylightblue}\bfseries,
-  ndkeywords={@Deprecated, @JvmName, @JvmStatic, @JvmOverloads, @JvmField, @JvmSynthetic, Iterable, Int, Long, Integer, Short, Byte, Float, Double, String, Runnable, Array},
+  ndkeywords={@Deprecated, @JvmName, @JvmStatic, @JvmOverloads, @JvmField, @JvmSynthetic, Iterable, Bool, Boolean, Int, Long, Integer, Short, Byte, Float, Double, String, Runnable, Array},
   ndkeywordstyle=\color{myorange}\bfseries,
   emph={println, return@, forEach, map, mapNotNull, first, filter, firstOrNull, lazy, delegate},
   emphstyle={\color{red}},
@@ -246,6 +257,7 @@
 % TITLE
 \title{
   \includegraphics[width=0.4\textwidth]{res/univcrest.pdf}
+  \bigskip
   \\[4pt]\reporttitle}
 \author{ %
 \begin{minipage}{0.3\textwidth}
