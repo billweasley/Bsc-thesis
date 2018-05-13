@@ -290,5 +290,40 @@ a prefix "squareGridNetwork" will be presented as Square Grid Network in the sim
 
 \paragraph{Experiment to find ineffective protocols}
 After finished the implementation of all main functionalities and built some protocols, the author examed some protocols to check their performance
-and found that the dancing protocol may hard to converge under some settings. This is an evidence that the simulator is able dig into what happens inside
+and found that the dancing protocol may hard to converge under some settings. This is an evidence that the simulator is able to digging into what happens inside
 a protocol. A further details would be discussed later in \textit{evoluation} section.
+
+\paragraph{Change from design}
+Actually, this is the part should had been implemented but have not implemented yet. The figure \ref{overlap_flipping} mentioned that sometimes
+the axis flapping may eliminate the overlaps for interactions in the models of terminating grid network constructor. This kind of detect has not been developed and therefore for some cases,
+it may lead to a kind of "over-rejection" which means it may reject some acceptable connection when activating this connection leads at least one overlap but an axis flapping of the corresponding clique is able to
+eliminate all overlapping points. The simulator would not allow this kind of connection to fire which should be fired. This leads to a result that the accepting configuration in the simulator
+$A(C)^{'}$ is a strictly subset of $A(C)$ for a given time. It ensures that the all produced configuration are acceptable but may drop some possibly acceptable configurations.
+
+\subsection{Screenshot examples: initial screen and global line}
+The control area of user interface uses the library TornadoFX \cite{TornadoFX}, which is a "Lightweight JavaFX Framework for Kotlin".
+The author did not aware a serious problem at early stage of development that the GraphStream library is based on Java Swing, which has poor compatibility with JavaFX. This leads to a negative
+result, which means the finished simulator cannot be resized for current version.
+
+\par\noindent
+For proving the work the author had done so far, here are the two screenshots, so one for initial screen, and the other one is
+the application after finishing running global line protocol (with parameter initial nodes with state $q_{0}$:15, fast-forwarding: no).
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =\textwidth]{context/diagram/InitialScreen.png}
+\caption{Screenshot for User Interface, after launching}
+\label{capture_start}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =\textwidth]{context/diagram/GlobalLine5_NoneFastForwarding.png}
+\caption{Screenshot for User Interface, after running global line (5 states) protocol}
+\label{capture_star}
+\end{center}
+\end{figure}
+\par\noindent
+For more screenshots, they can be found in the folder $Screenshots$ in the zipped file that submitted together with
+this document.
